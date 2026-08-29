@@ -24,23 +24,15 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     page,
   }) => {
     // Unverified banner should be visible
-    await expect(
-      page.getByText(/UNVERIFIED \/ UNREGISTERED/i),
-    ).toBeVisible();
-    await expect(
-      page.getByText(/Profile Verification Required/i),
-    ).toBeVisible();
+    await expect(page.getByText(/UNVERIFIED \/ UNREGISTERED/i)).toBeVisible();
+    await expect(page.getByText(/Profile Verification Required/i)).toBeVisible();
 
     // Open the registration modal
     await page.getByRole("button", { name: /Register profile/i }).click();
 
     // Modal should be visible with the registration form
-    await expect(
-      page.getByText(/Register Business Metadata/i),
-    ).toBeVisible();
-    await expect(
-      page.getByText(/Select On-Chain Business Role/i),
-    ).toBeVisible();
+    await expect(page.getByText(/Register Business Metadata/i)).toBeVisible();
+    await expect(page.getByText(/Select On-Chain Business Role/i)).toBeVisible();
   });
 
   test("should register as an issuer and reflect the verified state", async ({
