@@ -23,14 +23,18 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
   }) => {
     // Unverified banner should be visible
     await expect(page.getByText(/UNVERIFIED \/ UNREGISTERED/i)).toBeVisible();
-    await expect(page.getByText(/Profile Verification Required/i)).toBeVisible();
+    await expect(
+      page.getByText(/Profile Verification Required/i),
+    ).toBeVisible();
 
     // Open the registration modal
     await page.getByRole("button", { name: /Register profile/i }).click();
 
     // Modal should be visible with the registration form
     await expect(page.getByText(/Register Business Metadata/i)).toBeVisible();
-    await expect(page.getByText(/Select On-Chain Business Role/i)).toBeVisible();
+    await expect(
+      page.getByText(/Select On-Chain Business Role/i),
+    ).toBeVisible();
   });
 
   test("should register as an issuer and reflect the verified state", async ({
@@ -84,7 +88,9 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     // Verified state should now be reflected in the UI
     await expect(page.getByText(/VERIFIED ON-CHAIN/i)).toBeVisible();
     await expect(page.getByText(/ROLE: ISSUER/i)).toBeVisible();
-    await expect(page.getByText(/Decentralized Identity Active/i)).toBeVisible();
+    await expect(
+      page.getByText(/Decentralized Identity Active/i),
+    ).toBeVisible();
   });
 
   test("should register as a buyer and reflect the verified state", async ({
@@ -140,7 +146,9 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     // Verified state should now be reflected in the UI
     await expect(page.getByText(/VERIFIED ON-CHAIN/i)).toBeVisible();
     await expect(page.getByText(/ROLE: BUYER/i)).toBeVisible();
-    await expect(page.getByText(/Decentralized Identity Active/i)).toBeVisible();
+    await expect(
+      page.getByText(/Decentralized Identity Active/i),
+    ).toBeVisible();
   });
 
   test("should show validation error when required fields are missing", async ({
