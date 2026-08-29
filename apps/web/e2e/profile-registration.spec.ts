@@ -52,7 +52,9 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     // Default role is issuer; fill in the required metadata
     await page.getByPlaceholder("e.g. EU123456789").fill("EU123456789");
     await page.getByPlaceholder("e.g. Germany").fill("Germany");
-    await page.getByPlaceholder("e.g. https://acme.corp").fill("https://acme.corp");
+    await page
+      .getByPlaceholder("e.g. https://acme.corp")
+      .fill("https://acme.corp");
 
     // Submit the registration form
     await page.getByRole("button", { name: /Register Profile/i }).click();
@@ -68,11 +70,17 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
       const queryClient = (window as any).__reactQueryClient;
       if (queryClient) {
         queryClient.setQueryData(
-          ["isVerified", "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"],
+          [
+            "isVerified",
+            "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+          ],
           true,
         );
         queryClient.setQueryData(
-          ["profile", "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"],
+          [
+            "profile",
+            "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+          ],
           {
             address: "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
             role: "issuer",
@@ -112,7 +120,9 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     // Fill in the required metadata
     await page.getByPlaceholder("e.g. EU123456789").fill("EU987654321");
     await page.getByPlaceholder("e.g. Germany").fill("France");
-    await page.getByPlaceholder("e.g. https://acme.corp").fill("https://buyer.corp");
+    await page
+      .getByPlaceholder("e.g. https://acme.corp")
+      .fill("https://buyer.corp");
 
     // Submit the registration form
     await page.getByRole("button", { name: /Register Profile/i }).click();
@@ -127,11 +137,17 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
       const queryClient = (window as any).__reactQueryClient;
       if (queryClient) {
         queryClient.setQueryData(
-          ["isVerified", "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"],
+          [
+            "isVerified",
+            "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+          ],
           true,
         );
         queryClient.setQueryData(
-          ["profile", "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"],
+          [
+            "profile",
+            "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+          ],
           {
             address: "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
             role: "buyer",
