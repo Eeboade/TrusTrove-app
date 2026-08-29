@@ -58,24 +58,27 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
 
     // Seed the React Query cache to simulate a verified profile so the UI
     // reflects the resulting verified state after registration.
-    await page.evaluate(() => {
-      const queryClient = (window as any).__reactQueryClient;
-      if (queryClient) {
-        queryClient.setQueryData(["isVerified", MOCK_ADDRESS], true);
-        queryClient.setQueryData(["profile", MOCK_ADDRESS], {
-          address: MOCK_ADDRESS,
-          role: "issuer",
-          registeredAt: Math.floor(Date.now() / 1000),
-          metadata: {
-            companyName: "",
-            taxId: "EU123456789",
-            country: "Germany",
-            website: "https://acme.corp",
-            email: "",
-          },
-        });
-      }
-    });
+    await page.evaluate(
+      (address) => {
+        const queryClient = (window as any).__reactQueryClient;
+        if (queryClient) {
+          queryClient.setQueryData(["isVerified", address], true);
+          queryClient.setQueryData(["profile", address], {
+            address,
+            role: "issuer",
+            registeredAt: Math.floor(Date.now() / 1000),
+            metadata: {
+              companyName: "",
+              taxId: "EU123456789",
+              country: "Germany",
+              website: "https://acme.corp",
+              email: "",
+            },
+          });
+        }
+      },
+      MOCK_ADDRESS,
+    );
 
     // Re-render trigger: small navigation round-trip to pick up cache
     await page.waitForTimeout(1000);
@@ -113,24 +116,27 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     ).not.toBeVisible();
 
     // Seed the React Query cache to simulate a verified buyer profile
-    await page.evaluate(() => {
-      const queryClient = (window as any).__reactQueryClient;
-      if (queryClient) {
-        queryClient.setQueryData(["isVerified", MOCK_ADDRESS], true);
-        queryClient.setQueryData(["profile", MOCK_ADDRESS], {
-          address: MOCK_ADDRESS,
-          role: "buyer",
-          registeredAt: Math.floor(Date.now() / 1000),
-          metadata: {
-            companyName: "",
-            taxId: "EU987654321",
-            country: "France",
-            website: "https://buyer.corp",
-            email: "",
-          },
-        });
-      }
-    });
+    await page.evaluate(
+      (address) => {
+        const queryClient = (window as any).__reactQueryClient;
+        if (queryClient) {
+          queryClient.setQueryData(["isVerified", address], true);
+          queryClient.setQueryData(["profile", address], {
+            address,
+            role: "buyer",
+            registeredAt: Math.floor(Date.now() / 1000),
+            metadata: {
+              companyName: "",
+              taxId: "EU987654321",
+              country: "France",
+              website: "https://buyer.corp",
+              email: "",
+            },
+          });
+        }
+      },
+      MOCK_ADDRESS,
+    );
 
     // Re-render trigger: small navigation round-trip to pick up cache
     await page.waitForTimeout(1000);
