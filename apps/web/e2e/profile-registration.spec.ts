@@ -1,8 +1,7 @@
 import { expect } from "@playwright/test";
 import { test } from "./fixtures/freighter";
 
-const MOCK_ADDRESS =
-  "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+const MOCK_ADDRESS = "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 test.describe("Profile Registration & Verification - Happy Path", () => {
   test.beforeEach(async ({ page }) => {
