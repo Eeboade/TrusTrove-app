@@ -263,9 +263,7 @@ test.describe("Marketplace Browse & Filter Flow", () => {
     await page.getByText(/inv-fu\.\.\.002/i).click();
 
     // Assert the management center shows the selected invoice details
-    await expect(
-      page.getByText(/POOL FINANCING PREVIEW/i),
-    ).toBeVisible();
+    await expect(page.getByText(/POOL FINANCING PREVIEW/i)).toBeVisible();
     await expect(page.getByText(/Face Value:/i)).toBeVisible();
     await expect(page.getByText(/Funded Cost/i)).toBeVisible();
   });
