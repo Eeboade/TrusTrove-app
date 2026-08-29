@@ -61,31 +61,19 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     await page.evaluate(() => {
       const queryClient = (window as any).__reactQueryClient;
       if (queryClient) {
-        queryClient.setQueryData(
-          [
-            "isVerified",
-            "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-          ],
-          true,
-        );
-        queryClient.setQueryData(
-          [
-            "profile",
-            "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-          ],
-          {
-            address: "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-            role: "issuer",
-            registeredAt: Math.floor(Date.now() / 1000),
-            metadata: {
-              companyName: "",
-              taxId: "EU123456789",
-              country: "Germany",
-              website: "https://acme.corp",
-              email: "",
-            },
+        queryClient.setQueryData(["isVerified", MOCK_ADDRESS], true);
+        queryClient.setQueryData(["profile", MOCK_ADDRESS], {
+          address: MOCK_ADDRESS,
+          role: "issuer",
+          registeredAt: Math.floor(Date.now() / 1000),
+          metadata: {
+            companyName: "",
+            taxId: "EU123456789",
+            country: "Germany",
+            website: "https://acme.corp",
+            email: "",
           },
-        );
+        });
       }
     });
 
@@ -128,31 +116,19 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     await page.evaluate(() => {
       const queryClient = (window as any).__reactQueryClient;
       if (queryClient) {
-        queryClient.setQueryData(
-          [
-            "isVerified",
-            "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-          ],
-          true,
-        );
-        queryClient.setQueryData(
-          [
-            "profile",
-            "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-          ],
-          {
-            address: "GBMOCKWALLETADDRESSXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-            role: "buyer",
-            registeredAt: Math.floor(Date.now() / 1000),
-            metadata: {
-              companyName: "",
-              taxId: "EU987654321",
-              country: "France",
-              website: "https://buyer.corp",
-              email: "",
-            },
+        queryClient.setQueryData(["isVerified", MOCK_ADDRESS], true);
+        queryClient.setQueryData(["profile", MOCK_ADDRESS], {
+          address: MOCK_ADDRESS,
+          role: "buyer",
+          registeredAt: Math.floor(Date.now() / 1000),
+          metadata: {
+            companyName: "",
+            taxId: "EU987654321",
+            country: "France",
+            website: "https://buyer.corp",
+            email: "",
           },
-        );
+        });
       }
     });
 
