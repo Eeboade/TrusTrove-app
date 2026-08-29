@@ -15,9 +15,7 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     }
 
     // Wait for wallet connection to be reflected in the UI
-    await expect(page.getByText(MOCK_ADDRESS)).toBeVisible({
-      timeout: 15000,
-    });
+    await expect(page.getByText(MOCK_ADDRESS)).toBeVisible({ timeout: 15000 });
   });
 
   test("should show unverified state and open the registration modal", async ({
@@ -86,9 +84,7 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     // Verified state should now be reflected in the UI
     await expect(page.getByText(/VERIFIED ON-CHAIN/i)).toBeVisible();
     await expect(page.getByText(/ROLE: ISSUER/i)).toBeVisible();
-    await expect(
-      page.getByText(/Decentralized Identity Active/i),
-    ).toBeVisible();
+    await expect(page.getByText(/Decentralized Identity Active/i)).toBeVisible();
   });
 
   test("should register as a buyer and reflect the verified state", async ({
@@ -144,9 +140,7 @@ test.describe("Profile Registration & Verification - Happy Path", () => {
     // Verified state should now be reflected in the UI
     await expect(page.getByText(/VERIFIED ON-CHAIN/i)).toBeVisible();
     await expect(page.getByText(/ROLE: BUYER/i)).toBeVisible();
-    await expect(
-      page.getByText(/Decentralized Identity Active/i),
-    ).toBeVisible();
+    await expect(page.getByText(/Decentralized Identity Active/i)).toBeVisible();
   });
 
   test("should show validation error when required fields are missing", async ({
